@@ -11,43 +11,43 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.edu.mydb.model.service.MediosPagoService;
-import com.edu.mydb.modelo.entity.MediosPago;
-
-
+import com.edu.mydb.model.service.ClientesService;
+import com.edu.mydb.modelo.entity.Clientes;
 
 @RestController
-@RequestMapping("/api/mediosPago")
-public class MediosPagoController {
+@RequestMapping("/api/clientes")
+public class ClientesController {
 	
 @Autowired
-private MediosPagoService mediosPagoService;
+ClientesService clientesService;
 	
 	@PostMapping
-	public MediosPago guardar(@RequestBody MediosPago mediosPago ) {
+	public Clientes save (@RequestBody Clientes clientes) {
 		
-		return mediosPagoService.save(mediosPago);
-		
+		return clientesService.save(clientes);
 	}
+	
 	
 	@GetMapping("/listar")
-	public Iterable<MediosPago>ListarTodos(@PathVariable Integer id){
+	public Iterable<Clientes>listarTodos(@RequestBody Clientes clientes){
 		
-		return mediosPagoService.findAll();
+		return clientesService.findAll();
 		
 	}
 	
-	@GetMapping("/id")
-	public Optional<MediosPago>buscarPorId(@PathVariable Integer id){
+	@GetMapping("{id}")
+	public Optional<Clientes>buscarPorId(@PathVariable Integer id){
 		
-		return mediosPagoService.findById(id);
-	
+		return clientesService.finById(id);
+		
 	}
 	
-	@DeleteMapping("/id")
-	public void eliminar(@PathVariable Integer id){
+	@DeleteMapping("{id}")
+	public void Eliminar(@PathVariable Integer id){
 		
-	mediosPagoService.deleteById(id);
+		clientesService.deleteById(id);
+		
 	}
+	
 
 }
